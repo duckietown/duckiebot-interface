@@ -23,7 +23,6 @@
         </include>
     </group>
 
-
     <!-- Joystick: reads from a physical joystick and produces ROS messages -->
     <group if="$(eval arg('robot_type') == 'duckiebot')">
         <include file="$(find joystick)/launch/joystick_node.launch">
@@ -37,6 +36,10 @@
             <arg name="param_file_name" value="$(arg param_file_name)"/>
         </include>
 
+        <include file="$(find battery_monitor)/launch/battery_monitor.launch">
+            <arg name="veh" value="$(arg veh)"/>
+            <arg name="param_file_name" value="$(arg param_file_name)"/>
+        </include>
    </group>
 
     <!-- Traffic Light (Traffic Light robot only): commands the LEDs of a traffic light -->

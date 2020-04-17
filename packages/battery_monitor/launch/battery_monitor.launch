@@ -1,0 +1,13 @@
+<launch>
+
+<arg name="pkg_name" value="battery_monitor"/>
+<arg name="veh"  doc="Name of vehicle. ex: megaman"/>
+<arg name="param_file_name" default="default" doc="Specify a param file. ex:megaman." />
+<arg name="node_name" default="battery_monitor"/>
+
+
+<node ns="$(arg veh)"   pkg="$(arg pkg_name)" type="$(arg node_name).py" name="$(arg node_name)" output="screen" required="false">
+            <rosparam command="load" file="$(find battery_monitor)/config/$(arg node_name)/$(arg param_file_name).yaml"/>
+</node>
+
+</launch>
