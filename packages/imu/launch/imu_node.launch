@@ -1,0 +1,17 @@
+<launch>
+    <arg name="veh" doc="Specify a vehicle name"/>
+    <arg name="param_file_name" default="duckiebot" doc="Specify a param file. ex:megaman"/>
+
+    <arg name="pkg_name" value="imu"/>
+    <arg name="node_name" value="imu_node"/>
+    <arg name="required" default="false"/>
+
+    <group ns="$(arg veh)">
+        <node pkg="$(arg pkg_name)" name="imu_node" type="$(arg node_name).py"
+              output="screen" required="$(arg required)">
+            <param name="veh" value="$(arg veh)" />
+            <rosparam command="load"
+                      file="$(find imu)/config/$(arg node_name)/$(arg param_file_name).yaml"/>
+        </node>
+    </group>
+</launch>

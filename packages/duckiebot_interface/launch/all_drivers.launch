@@ -115,6 +115,13 @@
         </include>
     </group>
 
+    <!-- IMU sensor: -->
+    <group if="$(eval arg('robot_configuration') == 'DB21M')">
+        <include file="$(find imu)/launch/imu_node.launch">
+            <arg name="veh" value="$(arg veh)"/>
+        </include>
+    </group>
+
     <!-- Robot HTTP API: provides an HTTP API through which we can control the Robot -->
     <include file="$(find robot_http_api)/launch/robot_http_api_node.launch">
         <arg name="veh" value="$(arg veh)"/>
